@@ -89,8 +89,9 @@
 
   <div><img id="rankImage" src="seoyoung_rank_1.png" alt="서영이"></div>
 
-  <!-- 똥 효과음 -->
-  <audio id="soundPoop" src="soundPoop.mp3"></audio>
+  <button onclick="playPoopSound()">💩 사운드 테스트</button>
+
+  <audio id="soundPoop" src="soundPoop.mp3.mp3" preload="auto"></audio>
 
   <script>
     let money = 0;
@@ -106,8 +107,7 @@
     function work() {
       vibrate();
       money += earnRate;
-      document.getElementById("money").innerText = money;
-      evolve();
+      update();
     }
 
     function invest() {
@@ -119,16 +119,14 @@
       } else {
         alert("자금 부족! 더 벌어라!");
       }
-      document.getElementById("money").innerText = money;
-      evolve();
+      update();
     }
 
     function gamble() {
       vibrate();
       money += 300;
       alert("한탕 제대로 쳤다! 돈벼락!");
-      document.getElementById("money").innerText = money;
-      evolve();
+      update();
     }
 
     function tax() {
@@ -138,10 +136,9 @@
         alert("세금 납부 완료. 신분 유지 성공.");
       } else {
         alert("세금 못 냈다! 벌금 나간다!");
-        money -= 100; // 마이너스 허용
+        money -= 100;
       }
-      document.getElementById("money").innerText = money;
-      evolve();
+      update();
     }
 
     function spend() {
@@ -149,8 +146,7 @@
       const loss = Math.floor(Math.random() * 151) + 150;
       money -= loss;
       alert("기생집 가서 탕진했다! " + loss + "냥 날아감!");
-      document.getElementById("money").innerText = money;
-      evolve();
+      update();
     }
 
     function sideJob() {
@@ -158,6 +154,10 @@
       const pay = earnRate + 10;
       money += pay;
       alert("남의 집 가서 뼈빠지게 일했다! +" + pay + "냥");
+      update();
+    }
+
+    function update() {
       document.getElementById("money").innerText = money;
       evolve();
     }
@@ -177,8 +177,19 @@
         image.src = "seoyoung_rank_000_void.png"; // 무
       } else {
         image.src = "seoyoung_rank_00_poop.png"; // 똥
-        document.getElementById("soundPoop").play();
+        playPoopSound();
       }
+    }
+
+    function playPoopSound() {
+      const poopSound = document.getElementById("soundPoop");
+      poopSound.volume = 1.0;
+      poopSound.play().then(() => {
+        console.log("✅ 똥 사운드 재생 성공");
+      }).catch((err) => {
+        alert("❌ 똥 소리 실패! 콘솔 확인: " + err.message);
+        console.error("❌ 사운드 재생 실패:", err);
+      });
     }
   </script>
 
