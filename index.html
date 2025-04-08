@@ -137,7 +137,7 @@
         alert("세금 납부 완료. 신분 유지 성공.");
       } else {
         alert("세금 못 냈다! 벌금 나간다!");
-        money = Math.max(0, money - 100);
+        money -= 100; // 마이너스 허용
       }
       document.getElementById("money").innerText = money;
       evolve();
@@ -146,7 +146,7 @@
     function spend() {
       vibrate();
       const loss = Math.floor(Math.random() * 151) + 150; // 150~300
-      money = Math.max(0, money - loss);
+      money -= loss;
       alert("기생집 가서 탕진했다! " + loss + "냥 날아감!");
       document.getElementById("money").innerText = money;
       evolve();
@@ -172,11 +172,11 @@
         image.src = "seoyoung_rank_1.png"; // 노비
       } else if (money >= 10) {
         image.src = "seoyoung_rank_0_stone.png"; // 돌
-      } else if (money > 0) {
+      } else if (money >= 0) {
+        image.src = "seoyoung_rank_000_void.png"; // 무
+      } else {
         image.src = "seoyoung_rank_00_poop.png"; // 똥
         document.getElementById("soundPoop").play();
-      } else {
-        image.src = "seoyoung_rank_000_void.png"; // 무
       }
     }
   </script>
