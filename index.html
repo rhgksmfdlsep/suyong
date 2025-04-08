@@ -21,8 +21,6 @@
     }
 
     button {
-      background-size: cover;
-      background-repeat: no-repeat;
       border: none;
       color: #3b2a1a;
       font-family: 'Gugi', cursive;
@@ -35,10 +33,12 @@
       transition: transform 0.1s ease;
     }
 
-    .btn-work { background-image: url('btn_1.png'); }
-    .btn-invest { background-image: url('btn_2.png'); }
-    .btn-gamble { background-image: url('btn_3.png'); }
-    .btn-tax { background-image: url('btn_4.png'); }
+    .btn-work { background-color: #fcd5ce; }
+    .btn-invest { background-color: #faedcd; }
+    .btn-gamble { background-color: #caffbf; }
+    .btn-tax { background-color: #bdb2ff; }
+    .btn-entertain { background-color: #ffd6e0; font-weight: bold; }
+    .btn-labor { background-color: #e0ffd6; font-weight: bold; }
 
     button:active {
       transform: scale(0.97);
@@ -82,10 +82,13 @@
     <button class="btn-gamble" onclick="gamble()">한탕 벌기</button>
     <button class="btn-tax" onclick="tax()">세금 납부</button>
   </div>
+  <div>
+    <button class="btn-entertain" onclick="spend()">기생집 놀러가기</button>
+    <button class="btn-labor" onclick="sideJob()">남의 집 가서 일하기</button>
+  </div>
 
   <div><img id="rankImage" src="seoyoung_rank_1.png" alt="서영이"></div>
 
-  <!-- 똥 효과음만 넣음 -->
   <audio id="soundPoop" src="soundPoop.mp3"></audio>
 
   <script>
@@ -136,6 +139,24 @@
         alert("세금 못 냈다! 벌금 나간다!");
         money = Math.max(0, money - 100);
       }
+      document.getElementById("money").innerText = money;
+      evolve();
+    }
+
+    function spend() {
+      vibrate();
+      const loss = Math.floor(Math.random() * 151) + 150; // 150~300
+      money = Math.max(0, money - loss);
+      alert("기생집 가서 탕진했다! " + loss + "냥 날아감!");
+      document.getElementById("money").innerText = money;
+      evolve();
+    }
+
+    function sideJob() {
+      vibrate();
+      const pay = earnRate + 10;
+      money += pay;
+      alert("남의 집 가서 뼈빠지게 일했다! +" + pay + "냥");
       document.getElementById("money").innerText = money;
       evolve();
     }
