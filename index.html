@@ -2,9 +2,23 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>서영이 신분 상승</title>
+  <title>서영이 신분 상승 시뮬레이터</title>
   <style>
-    body { text-align: center; font-family: Arial; margin-top: 20px; }
+    body {
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      margin-top: 20px;
+      background-color: #fefae0;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 20px;
+    }
 
     #rankImage {
       margin-top: 40px;
@@ -62,7 +76,8 @@
   </style>
 </head>
 <body>
-  <h1>서영이 신분 상승</h1>
+
+  <h1>서영이 신분 상승 시뮬레이터</h1>
   <p>현재 자산: <span id="money">0</span>냥</p>
 
   <div>
@@ -75,6 +90,11 @@
   </div>
 
   <div><img id="rankImage" src="seoyoung_rank_1.png" alt="서영이"></div>
+
+  <!-- 효과음 -->
+  <audio id="soundPoop" src="poop.mp3"></audio>
+  <audio id="soundStone" src="stone.mp3"></audio>
+  <audio id="soundVoid" src="void.mp3"></audio>
 
   <script>
     let money = 0;
@@ -129,22 +149,24 @@
     }
 
     function evolve() {
-  if (money >= 1000) {
-    image.src = "seoyoung_rank_4.png"; // 왕
-  } else if (money >= 500) {
-    image.src = "seoyoung_rank_3.png"; // 양반
-  } else if (money >= 200) {
-    image.src = "seoyoung_rank_2.png"; // 평민
-  } else if (money >= 50) {
-    image.src = "seoyoung_rank_1.png"; // 노비
-  } else if (money >= 10) {
-    image.src = "seoyoung_rank_0_stone.png"; // 돌
-  } else if (money > 0) {
-    image.src = "seoyoung_rank_00_poop.png"; // 똥
-  } else {
-    image.src = "seoyoung_rank_000_void.png"; // 무
-  }
-}
+      if (money >= 1000) {
+        image.src = "seoyoung_rank_4.png"; // 왕
+      } else if (money >= 500) {
+        image.src = "seoyoung_rank_3.png"; // 양반
+      } else if (money >= 200) {
+        image.src = "seoyoung_rank_2.png"; // 평민
+      } else if (money >= 50) {
+        image.src = "seoyoung_rank_1.png"; // 노비
+      } else if (money >= 10) {
+        image.src = "seoyoung_rank_0_stone.png"; // 돌
+      } else if (money > 0) {
+        image.src = "seoyoung_rank_00_poop.png"; // 똥
+        document.getElementById("soundPoop").play();
+      } else {
+        image.src = "seoyoung_rank_000_void.png"; // 무
+      }
+    }
   </script>
+
 </body>
 </html>
