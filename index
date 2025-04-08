@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>서영이 신분 상승</title>
+  <style>
+    body { text-align: center; font-family: Arial; margin-top: 20px; }
+
+    #rankImage {
+      margin-top: 40px;
+      width: 50%;
+      height: auto;
+    }
+
+    button {
+      background-size: cover;
+      background-repeat: no-repeat;
+      border: none;
+      color: #3b2a1a;
+      font-family: 'Gugi', cursive;
+      font-size: 22px;
+      padding: 20px;
+      width: 260px;
+      height: 80px;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    .btn-work { background-image: url('btn_1.png'); }
+    .btn-invest { background-image: url('btn_2.png'); }
+    .btn-gamble { background-image: url('btn_3.png'); }
+    .btn-tax { background-image: url('btn_4.png'); }
+
+    button:active {
+      transform: scale(0.97);
+      filter: brightness(0.9);
+    }
+
+    @media (max-width: 768px) {
+      button {
+        width: 90%;
+        padding: 25px;
+        font-size: 24px;
+        margin: 10px auto;
+        display: block;
+      }
+
+      #rankImage {
+        width: 70%;
+        margin-top: 50px;
+      }
+
+      p {
+        font-size: 24px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>서영이 신분 상승</h1>
+  <p>현재 자산: <span id="money">0</span>냥</p>
+
+  <div>
+    <button class="btn-work" onclick="work()">노역하기</button>
+    <button class="btn-invest" onclick="invest()">사업 확장</button>
+  </div>
+  <div>
+    <button class="btn-gamble" onclick="gamble()">한탕 벌기</button>
+    <button class="btn-tax" onclick="tax()">세금 납부</button>
+  </div>
+
+  <div><img id="rankImage" src="seoyoung_rank_1.png" alt="서영이"></div>
+
+  <script>
+    let money = 0;
+    let earnRate = 10;
+    const image = document.getElementById("rankImage");
+
+    function vibrate() {
+      if (navigator.vibrate) {
+        navigator.vibrate([100, 50, 100]);
+      }
+    }
+
+    function work() {
+      vibrate();
+      money += earnRate;
+      document.getElementById("money").innerText = money;
+      evolve();
+    }
+
+    function invest() {
+      vibrate();
+      if (money >= 100) {
+        money -= 100;
+        earnRate *= 2;
+        alert("사업이 성공했다! 수익 2배 증가!");
+      } else {
+        alert("자금 부족! 더 벌어라!");
+      }
+      document.getElementById("money").innerText = money;
+      evolve();
+    }
+
+    function gamble() {
+      vibrate();
+      money += 300;
+      alert("한탕 제대로 쳤다! 돈벼락!");
+      document.getElementById("money").innerText = money;
+      evolve();
+    }
+
+    function tax() {
+      vibrate();
+      if (money >= 200) {
+        money -= 200;
+        alert("세금 납부 완료. 신분 유지 성공.");
+      } else {
+        alert("세금 못 냈다! 벌금 나간다!");
+        money = Math.max(0, money - 100);
+      }
+      document.getElementById("money").innerText = money;
+      evolve();
+    }
+
+    function evolve() {
+      if (money >= 1000) {
+        image.src = "seoyoung_rank_4.png"; // 왕
+      } else if (money >= 500) {
+        image.src = "seoyoung_rank_3.png"; // 양반
+      } else if (money >= 200) {
+        image.src = "seoyoung_rank_2.png"; // 평민
+      } else {
+        image.src = "seoyoung_rank_1.png"; // 노비
+      }
+    }
+  </script>
+</body>
+</html>
