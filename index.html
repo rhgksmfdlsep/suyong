@@ -89,6 +89,7 @@
 
   <div><img id="rankImage" src="seoyoung_rank_1.png" alt="서영이"></div>
 
+  <!-- 똥 효과음 -->
   <audio id="soundPoop" src="soundPoop.mp3"></audio>
 
   <script>
@@ -145,7 +146,7 @@
 
     function spend() {
       vibrate();
-      const loss = Math.floor(Math.random() * 151) + 150; // 150~300
+      const loss = Math.floor(Math.random() * 151) + 150;
       money -= loss;
       alert("기생집 가서 탕진했다! " + loss + "냥 날아감!");
       document.getElementById("money").innerText = money;
@@ -162,7 +163,7 @@
     }
 
     function evolve() {
-      if (money >= 1000) {
+      if (money >= 10000) {
         image.src = "seoyoung_rank_4.png"; // 왕
       } else if (money >= 500) {
         image.src = "seoyoung_rank_3.png"; // 양반
