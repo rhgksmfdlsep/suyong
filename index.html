@@ -129,16 +129,22 @@
     }
 
     function evolve() {
-      if (money >= 1000) {
-        image.src = "seoyoung_rank_4.png"; // 왕
-      } else if (money >= 500) {
-        image.src = "seoyoung_rank_3.png"; // 양반
-      } else if (money >= 200) {
-        image.src = "seoyoung_rank_2.png"; // 평민
-      } else {
-        image.src = "seoyoung_rank_1.png"; // 노비
-      }
-    }
+  if (money >= 1000) {
+    image.src = "seoyoung_rank_4.png"; // 왕
+  } else if (money >= 500) {
+    image.src = "seoyoung_rank_3.png"; // 양반
+  } else if (money >= 200) {
+    image.src = "seoyoung_rank_2.png"; // 평민
+  } else if (money >= 50) {
+    image.src = "seoyoung_rank_1.png"; // 노비
+  } else if (money >= 10) {
+    image.src = "seoyoung_rank_0_stone.png"; // 돌
+  } else if (money > 0) {
+    image.src = "seoyoung_rank_00_poop.png"; // 똥
+  } else {
+    image.src = "seoyoung_rank_000_void.png"; // 무
+  }
+}
   </script>
 </body>
 </html>
